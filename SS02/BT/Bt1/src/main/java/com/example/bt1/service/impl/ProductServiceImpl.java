@@ -3,12 +3,10 @@ package com.example.bt1.service.impl;
 import com.example.bt1.model.entity.Product;
 import com.example.bt1.repository.ProductRepository;
 import com.example.bt1.service.ProductService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-//@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     public ProductServiceImpl(ProductRepository productRepository) {
