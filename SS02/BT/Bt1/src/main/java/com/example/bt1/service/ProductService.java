@@ -10,5 +10,4 @@ public interface ProductService {
     Product insertProduct(Product product);
     Product updateProduct(Product product);
     Product getProductById(String id);
-    Boolean deleteProduct(String id);
 }

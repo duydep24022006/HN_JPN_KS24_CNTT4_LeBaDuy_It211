@@ -45,7 +45,6 @@ public class WishController {
         );
     }
 
-    // Điều ước 2 - Cập nhật trạng thái item
     @PutMapping("/item/{id}/status")
     public ResponseEntity<ApiResponse<Item>>
     updateStatus(
@@ -96,7 +95,6 @@ public class WishController {
         );
     }
 
-    // Xem lịch sử điều ước
     @GetMapping("/history")
     public ResponseEntity<
             ApiResponse<List<WishHistory>>
@@ -106,6 +104,7 @@ public class WishController {
                 wishService.getHistory();
 
         return ResponseEntity.ok(
+
 
                 ApiResponse
                         .<List<WishHistory>>builder()

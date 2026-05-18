@@ -67,29 +67,6 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(
-            @PathVariable String id
-    ) {
 
-        try {
-
-            productService.deleteProduct(id);
-
-            return ResponseEntity.noContent().build();
-
-        } catch (RuntimeException e) {
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(
-                            new ApiDataRepose<>(
-                                    false,
-                                    e.getMessage(),
-                                    null,
-                                    HttpStatus.NOT_FOUND.value()
-                            )
-                    );
-        }
-    }
 }
 

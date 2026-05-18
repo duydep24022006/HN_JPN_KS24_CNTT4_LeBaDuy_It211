@@ -33,10 +33,4 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductById(String id) {
         return       productRepository.findById(id).orElseThrow(()->new RuntimeException("Không tìm thấy sản phẩm với id: " + id));
     }
-    @Override
-    public Boolean deleteProduct(String id) {
-        productRepository.findById(id).orElseThrow(()->new RuntimeException("Không tìm thấy sản phẩm với id: " + id));
-        productRepository.deleteById(id);
-        return true;
-    }
 }
