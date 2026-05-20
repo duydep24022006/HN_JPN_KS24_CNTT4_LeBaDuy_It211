@@ -44,10 +44,8 @@ public class ProductServiceImpl implements ProductService {
         productRepository.findById(id).orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với id = " + id));
         return productRepository.findById(id)
                 .map(existingProduct -> {
-                    // Update the existing product with values from the new product
                     existingProduct.setName(product.getName());
                     existingProduct.setPrice(product.getPrice());
-                    // ... update other fields as needed
                     return productRepository.save(existingProduct);
                 })
                 .orElse(null);
