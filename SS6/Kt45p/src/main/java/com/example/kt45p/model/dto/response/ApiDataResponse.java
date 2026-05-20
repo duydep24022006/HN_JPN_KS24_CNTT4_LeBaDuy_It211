@@ -1,5 +1,4 @@
 package com.example.kt45p.model.dto.response;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
