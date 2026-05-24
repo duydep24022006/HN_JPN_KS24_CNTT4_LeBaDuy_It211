@@ -14,6 +14,7 @@ public class SecurityAspect {
     @Before("execution(* org.example.bai2.service.ProductService.add*(..))")
     public void verifyUser(JoinPoint joinPoint) {
         if (!"ADMIN".equals(currentUserRole)) {
+            System.out.println("AOP LOG: User hiện tại có role " + currentUserRole + " - không đủ quyền để thực hiện hành động này.");
             throw new RuntimeException("TRUY CẬP BỊ TỪ CHỐI: User không có quyền thực hiện hành động này.");
         }
     }
