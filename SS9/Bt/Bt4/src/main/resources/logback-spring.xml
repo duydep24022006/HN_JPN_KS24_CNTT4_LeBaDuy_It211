@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Cấu hình pattern log -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- ================= DEV PROFILE ================= -->
+    <!-- DEV: In ra Console, mức DEBUG -->
+    <springProfile name="dev">
+
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+    </springProfile>
+
+    <!-- ================= PROD PROFILE ================= -->
+    <!-- PROD: Ghi ra file app.log, cắt khi vượt 10MB, giữ tối đa 30 ngày -->
+    <springProfile name="prod">
+
+        <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+            <!-- File log hiện tại -->
+            <file>logs/app.log</file>
+
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+
+                <!-- File log cũ sau khi cắt và nén -->
+                <fileNamePattern>logs/app.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+
+                <!-- Cắt file khi vượt 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+
+                <!-- Giữ tối đa 30 ngày -->
+                <maxHistory>30</maxHistory>
+
+            </rollingPolicy>
+
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+
+        </appender>
+
+        <!-- Giới hạn log hệ thống -->
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="org.hibernate" level="WARN"/>
+        <logger name="org.apache" level="WARN"/>
+
+        <root level="INFO">
+            <appender-ref ref="APP_FILE"/>
+        </root>
+
+    </springProfile>
+
+</configuration>
